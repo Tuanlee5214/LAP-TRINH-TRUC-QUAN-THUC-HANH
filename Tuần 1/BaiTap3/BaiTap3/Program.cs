@@ -12,22 +12,27 @@ namespace BaiTap3
             return false;
         }
 
-        static void Main(string[] args)
+        //Nhập ngày tháng năm
+        static void NhapNgayThangNam(out int d, out int m, out int y)
         {
-            int ngay, thang, nam;
             Console.WriteLine("Nhap ngay ban muon : ");
-            ngay = int.Parse(Console.ReadLine());
+            d = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhap thang ban muon: ");
-            thang = int.Parse(Console.ReadLine());
+            m = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhap nam ban muon: ");
-            nam = int.Parse(Console.ReadLine());
+            y = int.Parse(Console.ReadLine());
+        }
+
+        //Kiểm tra ngày tháng năm hợp lệ hay không
+        static void KtraNgayHopLe(int ngay, int thang, int nam)
+        {
             if (nam <= 0 || thang < 1 || thang > 12)
             {
                 Console.WriteLine("Ngay thang nam khong hop le!!!");
                 return;
             }
             int maxDay;
-            switch(thang)
+            switch (thang)
             {
                 case 1:
                 case 3:
@@ -39,7 +44,7 @@ namespace BaiTap3
                     maxDay = 31;
                     break;
                 case 2:
-                    if(KtraNamNhuan(nam))
+                    if (KtraNamNhuan(nam))
                     {
                         maxDay = 29;
                     }
@@ -62,7 +67,16 @@ namespace BaiTap3
 
             if (ngay >= 1 && ngay <= maxDay) Console.WriteLine("Ngay thang nam hop le");
             else Console.WriteLine("Ngay thang nam khong hop le");
-            
+
+        }
+       
+        static void Main(string[] args)
+        {
+            int ngay, thang, nam;
+            NhapNgayThangNam(out ngay, out thang, out nam);
+
+            //Kiểm tra ngày hợp lệ
+            KtraNgayHopLe(ngay, thang, nam);
         }
     }
 }
