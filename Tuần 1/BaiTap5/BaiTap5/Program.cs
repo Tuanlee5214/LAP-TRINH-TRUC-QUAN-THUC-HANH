@@ -8,15 +8,21 @@
             if (nam % 400 == 0 || (nam % 4 == 0 && nam % 100 != 0)) return true;
             return false;
         }
-        static void Main(string[] args)
+
+        //Nhập ngày tháng năm
+        static void NhapNgayTN(out int ngay, out int thang, out int nam)
         {
-            int ngay, thang, nam;
             Console.WriteLine("Nhap ngay ban muon : ");
             ngay = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhap thang ban muon: ");
             thang = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhap nam ban muon: ");
             nam = int.Parse(Console.ReadLine());
+        }
+
+        //Hiển thị thứ trong tuần ứng với ngày tháng
+        static void HienThiThuTrongTuan(int ngay, int thang, int nam)
+        {
             if (nam <= 0 || thang < 1 || thang > 12)
             {
                 Console.WriteLine("Ngay thang nam khong hop le!!!");
@@ -77,14 +83,21 @@
                 yearOfCentury = year % 100;
                 century = year / 100;
 
-                int giaTri = (ngay + (13 * (month + 1))/5 + yearOfCentury + yearOfCentury / 4 + century/4 + 5* century) % 7;
+                int giaTri = (ngay + (13 * (month + 1)) / 5 + yearOfCentury + yearOfCentury / 4 + century / 4 + 5 * century) % 7;
 
-                string[] Thu = { "Thu Bay", "Chu Nhat", "Thu Hai", "Thu Ba", "Thu Tu", "Thu Nam", "Thu Sau"};
+                string[] Thu = { "Thu Bay", "Chu Nhat", "Thu Hai", "Thu Ba", "Thu Tu", "Thu Nam", "Thu Sau" };
 
                 Console.WriteLine("Thu trong tuan la : " + Thu[giaTri]);
 
             }
             else Console.WriteLine("Ngay thang nam khong hop le");
+        }
+        static void Main(string[] args)
+        {
+            int ngay, thang, nam;
+            NhapNgayTN(out ngay, out thang, out nam);
+
+            HienThiThuTrongTuan(ngay, thang, nam);
         }
     }
 }
