@@ -8,13 +8,19 @@
             if (nam % 400 == 0 || (nam % 4 == 0 && nam % 100 != 0)) return true;
             return false;
         }
-        static void Main(string[] args)
+
+        //Nhập tháng năm
+        static void NhapThangNam(out int thang, out int nam)
         {
-            int thang, nam;
             Console.WriteLine("Nhap thang : ");
             thang = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhap nam: ");
             nam = int.Parse(Console.ReadLine());
+        }
+
+        //Hiển thị số ngày của tháng đó
+        static void HienThiSoNgayCuaThangHopLe(int thang, int nam)
+        {
             if (nam < 0 || thang < 1 || thang > 12)
             {
                 Console.WriteLine("Thang hoac nam khong hop le");
@@ -22,7 +28,7 @@
             }
 
             int maxDay;
-            switch(thang)
+            switch (thang)
             {
                 case 1:
                 case 3:
@@ -52,6 +58,14 @@
 
             if (maxDay >= 1) Console.WriteLine("So ngay cua thang do la: " + maxDay);
             else Console.WriteLine("Khong co ngay hop le");
+        }
+
+        static void Main(string[] args)
+        {
+            int thang, nam;
+            NhapThangNam(out thang, out nam);
+
+            HienThiSoNgayCuaThangHopLe(thang, nam);
         }
     }
 }
